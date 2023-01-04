@@ -2,13 +2,28 @@ const express = require("express");
 
 const app = express();
 
-app.get("/cursos", (_, response) => {
+app.use(express.json());
+
+app.get("/cursos", (request, response) => {
+  const { query } = request;
+  console.log(query);
+
   return response.json(["Curso 1", "Curso 2", "Curso 3"]);
 });
 
-app.post("/cursos", (request, response) => {});
+app.post("/cursos", (request, response) => {
+  const { body } = request;
+  console.log(body);
 
-app.put("/cursos/:id", (request, response) => {});
+  return response.json(["Curso 1", "Curso 2", "Curso 3", "Curso 4"]);
+});
+
+app.put("/cursos/:id", (request, response) => {
+  const { id } = request.params;
+  console.log(id);
+
+  response.json(["Curso 6", "Curso 2", "Curso 3", "Curso 4"]);
+});
 
 app.patch("/cursos/:id", (request, response) => {});
 
